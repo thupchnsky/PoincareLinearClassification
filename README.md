@@ -15,11 +15,21 @@ Visualization of four embedded data sets. Different colors represent different c
 
 Here K stands for the number of classes and d stands for the dimension of embedded Poincaré ball. Data points from mini-ImageNet are mapped into 2 dimensions using tSNE for viewing purposes only and thus may not lie in the unit Poincaré disk.
 
+# Linear Classification in Hyperbolic Space
+
+### Perceptron
+
+The Jupyter notebook `HP_single_exp.ipynb` contains a demo to run our hyperbolic perceptron algorithms, hyperbolic perceptron from [5] and Euclidean perceptron on synthetic data with visualization.
+
+**Our Results** are shown in the following figure and table.
+
+![Image info](./perceptron_1.png)
+
+# TBA
 
 
-The Jupyter notebook `HP_single_exp.ipynb` contains a simple example code for our hyperbolic perceptron algorithms, hyperbolic perceptron from Weber et al. and Euclidean perceptron on synthetic data with visualization.
 
-# Reproducing our experiments of Fig 7 and Table 1
+To reproduce our experiments of Fig 7 and Table 1
 ```
 python Synthetic_exp.py --savepath [your saving path] 
 ```

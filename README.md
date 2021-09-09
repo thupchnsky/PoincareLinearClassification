@@ -1,8 +1,11 @@
-# Official implementation of efficient linear classification in hyperbolic space
+# Official Implementation of Efficient Linear Classification in Hyperbolic Space
 
 ### [Highly Scalable and Provably Accurate Classification in Poincare Balls (ICDM regular, 2021)](https://arxiv.org/pdf/2109.03781.pdf)
 
 Programming language: Python 3.7. Tested on operating systems: Windows 10, CentOS 7.7.1908
+
+# Poincare Embedding for Real Datasets
+![image info](./real_data_distribution.pdf)
 
 The Jupyter notebook `HP_single_exp.ipynb` contains a simple example code for our hyperbolic perceptron algorithms, hyperbolic perceptron from Weber et al. and Euclidean perceptron on synthetic data with visualization.
 

@@ -4,8 +4,6 @@
 
 Programming language: Python 3.7. Tested on operating systems: Windows 10, CentOS 7.7.1908
 
-### TBA
-
 The Jupyter notebook `HP_single_exp.ipynb` contains a simple example code for our hyperbolic perceptron algorithms, hyperbolic perceptron from Weber et al. and Euclidean perceptron on synthetic data with visualization.
 
 # Reproducing our experiments of Fig 7 and Table 1
@@ -27,6 +25,8 @@ Note that you can comment out some methods that you don't want to test in the fi
 The output will be saved as a (3,5,Repeat) numpy arrany. \
 First axis: acc, mistakes (for perceptron only), running time. \
 Second axis: methods. They are our hyperbolic perceptron, our second order hyperbolic perceptron, our hyperbolic SVM, SVM from Cho et al., Euclidean SVM.
+
+# More details about the usage TBA
 
 # How to choose the reference point p
 TBA

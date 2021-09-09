@@ -28,5 +28,8 @@ The output will be saved as a (3,5,Repeat) numpy arrany. \
 First axis: acc, mistakes (for perceptron only), running time. \
 Second axis: methods. They are our hyperbolic perceptron, our second order hyperbolic perceptron, our hyperbolic SVM, SVM from Cho et al., Euclidean SVM.
 
+# How to choose the reference point p
+TBA
+
 ## Contact
 Please contact Chao Pan (chaopan2@illinois.edu), Eli Chien (ichien3@illinois.edu) if you have any question.

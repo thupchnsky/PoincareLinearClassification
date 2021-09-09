@@ -1,6 +1,6 @@
 # Official implementation of efficient linear classification in hyperbolic space
 
-### [Highly Scalable and Provably Accurate Classification in Poincare Balls](paper link)
+### [Highly Scalable and Provably Accurate Classification in Poincare Balls](https://arxiv.org/pdf/2109.03781.pdf)
 
 Programming language: Python 3.7. Tested on operating systems: Windows 10, CentOS 7.7.1908
 

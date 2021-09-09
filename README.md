@@ -7,7 +7,7 @@ Programming language: Python 3.7. Tested on operating systems: Windows 10, CentO
 # Poincaré Embedding for Real Datasets
 ![Image info](./real_data_embedding.png)
 
-Visualization of four embedded data sets. Different colors represent different classes.
+**Figure 1.** Visualization of four embedded data sets. Different colors represent different classes.
 - Olsson’s single-cell RNA expression data [1] (top left, K = 8, d = 2)
 - CIFAR10 [2] (top right, K = 10, d = 2)
 - Fashion-MNIST [3] (bottom left, K = 10, d = 2)
@@ -23,8 +23,13 @@ The Jupyter notebook `HP_single_exp.ipynb` contains a demo to run our hyperbolic
 
 **Our Results** are shown in the following figure and table.
 
-![Image info](./perceptron_1.png)
+![Image info](./perceptron_2.png)
 
+**Table 1.** 
+
+### SVM
+
+![Image info](./perceptron_2.png)
 # TBA
 
 

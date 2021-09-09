@@ -1,11 +1,21 @@
 # Official Implementation of Efficient Linear Classification in Hyperbolic Space
 
-### [Highly Scalable and Provably Accurate Classification in Poincare Balls (ICDM regular, 2021)](https://arxiv.org/pdf/2109.03781.pdf)
+### [Highly Scalable and Provably Accurate Classification in Poincaré Balls (ICDM regular, 2021)](https://arxiv.org/pdf/2109.03781.pdf)
 
 Programming language: Python 3.7. Tested on operating systems: Windows 10, CentOS 7.7.1908
 
-# Poincare Embedding for Real Datasets
-![image info](./real_data_distribution.pdf)
+# Poincaré Embedding for Real Datasets
+![Image info](./real_data_embedding.png)
+
+Visualization of four embedded data sets. Different colors represent different classes.
+- Olsson’s single-cell RNA expression data [1] (top left, K = 8, d = 2)
+- CIFAR10 [2] (top right, K = 10, d = 2)
+- Fashion-MNIST [3] (bottom left, K = 10, d = 2)
+- Mini-ImageNet [4] (bottom right, K = 20, d = 512)
+
+Here K stands for the number of classes and d stands for the dimension of embedded Poincaré ball. Data points from mini-ImageNet are mapped into 2 dimensions using tSNE for viewing purposes only and thus may not lie in the unit Poincaré disk.
+
+
 
 The Jupyter notebook `HP_single_exp.ipynb` contains a simple example code for our hyperbolic perceptron algorithms, hyperbolic perceptron from Weber et al. and Euclidean perceptron on synthetic data with visualization.
 

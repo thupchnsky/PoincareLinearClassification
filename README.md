@@ -1,4 +1,4 @@
-# Official Implementation of Efficient Linear Classification in Hyperbolic Space
+# Efficient Linear Classification in Hyperbolic Space
 
 ### [Highly Scalable and Provably Accurate Classification in Poincaré Balls (ICDM regular, 2021)](https://arxiv.org/pdf/2109.03781.pdf)
 

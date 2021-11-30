@@ -22,16 +22,19 @@ Here K stands for the number of classes and d stands for the dimension of embedd
 Our results about accuracy, time complexity and number of updates w.r.t perceptron are shown in the following figure and table.
 
 ![Image info](./figs/perceptron_results.png)
+
 **Figure 2.** Experiments on synthetic data sets with different p. The upper and lower boundaries of the shaded region represent the first and third quantile, respectively. The line itself corresponds to the medium (second quantile) and the marker × indicates the mean. The first two columns plot the accuracy of the SVM methods while the last two columns plot the corresponding time complexity. For the first row we vary the dimension d from 2 to 1, 000. For the second row we vary the number of points N from 10<sup>3</sup> to 10<sup>6</sup>. In the third row we vary the margin ε from 1 to 0.001. The default setting for (d, N, ε) is
 (2, 10<sup>5</sup>, 0.01).
 
 ![Image info](./figs/perceptron_table.png)
+
 **Figure 3.** Averaged number of updates for the Poincaré second-order perceptron (S-perceptron) and Poincaré perceptron for a varying margin ε and fixed (N, d) = (10<sup>4</sup>, 10). Bold numbers indicate the best results, with the maximum number of updates over 20 runs shown in parenthesis.
 
 ### SVM
 Our results about accuracy and time complexity w.r.t svm are shown in the following table.
 
 ![Image info](./figs/svm_table.png)
+
 **Figure 4.** Performance of the convex Poincaré SVM algorithm.
 
 # How to use our codes

@@ -15,6 +15,7 @@ from platt import *
 import time
 from hsvm import *
 import argparse
+from algos import ConvexHull,minDpair,Weightedmidpt
 plt.style.use('seaborn')
 
 """
@@ -286,6 +287,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Experiments on real data")
     parser.add_argument("--dataset_name", type=str, default='cifar', help="Which dataset to test")
     parser.add_argument("--trails", type=int, default=5, help="How many trails to run")
+    parser.add_argument("--refpt", type=str, default='raw', help="raw or precompute. Reference point")
     parser.add_argument('--save_path', type=str, default="results", help="Where to save results")
     args = parser.parse_args()
 
@@ -293,8 +295,33 @@ if __name__ == '__main__':
     time_used = np.zeros((3, args.trails), dtype=float)
     # load data
     data = np.load('embedding/{}_poincare_embedding.npz'.format(args.dataset_name))
-    p = np.load('embedding/{}_reference_points_gt.npy'.format(args.dataset_name))
+    
+    if args.refpt == 'precompute':
+#     Use precomputed p
+        print('Use precomputed p')
+        p = np.load('embedding/{}_reference_points_gt.npy'.format(args.dataset_name))
+    elif args.refpt == 'raw':
+#     Compute p from scratch
+        print('Compute p from scratch')
+        p_list = []
+        for label in np.unique(data['y_train']):
+            # Find all training points with label
+            X = data['x_train'][data['y_train']==label]
+            # Find all training points for the rest labels
+            X_rest = data['x_train'][data['y_train']!=label]
+            # Find convex hull for these two group of points
+            CH_label = ConvexHull(X.transpose())
+            CH_rest = ConvexHull(X_rest.transpose())
+            # Find min dist pair on these two convex hull
+            MDP = minDpair(CH_label,CH_rest)
+            # choose p as their mid point
+            p_list.append(Weightedmidpt(MDP[:,0],MDP[:,1],0.5))
 
+        p = np.stack(p_list, axis=0)
+    
+    
+    
+    
     for i in range(args.trails):
         acc[0, i], time_used[0, i] = tangent_hsvm(data['x_train'], data['y_train'].astype(int), data['x_test'],
                                       data['y_test'].astype(int), C=5, p_arr=p, multiclass=True)

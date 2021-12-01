@@ -66,7 +66,7 @@ Second axis: methods. They are our hyperbolic perceptron, our second order hyper
 
 To run experiments on real-world data
 ```
-python svm_real_data.py --dataset_name=[working dataset from 'cifar', 'fashion-mnist', 'olsson' or 'mini'] --trails=[number of repeat] --save_path=[your saving path] --refpt=['raw' for computing p from scratch, 'precompute for loading p directly']
+python svm_real_data.py --dataset_name=[working dataset from 'cifar', 'fashion-mnist', 'olsson' or 'mini'] --trails=[number of repeat] --save_path=[your saving path] --refpt=['raw' for computing p from scratch, 'precompute' for loading p directly]
 ```
 Note that SVM is sensitive to the choice of coefficient `C`, which is used in soft-margin classifications.
 

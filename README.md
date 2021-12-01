@@ -1,4 +1,5 @@
 # Efficient Linear Classification in Hyperbolic Space
+[![DOI](https://zenodo.org/badge/401898578.svg)](https://zenodo.org/badge/latestdoi/401898578)
 
 ### [Highly Scalable and Provably Accurate Classification in Poincaré Balls (ICDM regular, 2021)](https://arxiv.org/pdf/2109.03781.pdf)
 

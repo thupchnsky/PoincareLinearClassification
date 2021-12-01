@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Distributed under terms of the MIT license.
+# Copyright 2021 Chao Pan.
 
 import numpy as np
 import scipy as sp
@@ -15,13 +16,11 @@ import sys
 import math
 
 from utils.utils import *
-from utils.datasets import *
 from platt import *
 
-# -----------------------------------------------
-# ----- Hyperbolic Support Vector Classifier ----
-# -----------------------------------------------
-
+"""
+This file contains the implementation for the non-convex hyperbolic SVM from Cho et al. 2019. Its original implementation is in Matlab. 
+"""
 
 def loss_fn(w, X, y, C=1.0):
     """

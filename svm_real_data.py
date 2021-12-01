@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # Distributed under terms of the MIT license.
+# Copyright 2021 Chao Pan.
 
 import os
 from sklearn.metrics import accuracy_score, f1_score
@@ -15,6 +16,10 @@ import time
 from hsvm import *
 import argparse
 plt.style.use('seaborn')
+
+"""
+This is the code for our SVM experiments on real data. Data is assumed to be in folder 'embedding'. You can change it to other directories if needed.
+"""
 
 colors = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown', 'tab:pink', 'tab:gray',
           'tab:olive']

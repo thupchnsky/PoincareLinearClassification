@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 #
 # Distributed under terms of the MIT license.
-
 # Downloaded from http://www.work.caltech.edu/~htlin/program/libsvm/doc/platt.py
 
 from sys import argv

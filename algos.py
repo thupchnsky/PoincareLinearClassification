@@ -2,29 +2,33 @@
 # -*- coding: utf-8 -*-
 #
 # Distributed under terms of the MIT license.
+# Copyright 2021 Chao Pan.
 
 import numpy as np
 import time
 import matplotlib.pyplot as plt
-
 from sklearn.metrics import roc_auc_score, precision_recall_curve, accuracy_score, confusion_matrix, f1_score
 from numpy.linalg import norm
 from sklearn.svm import LinearSVC
 from GrahamScan import GrahamScan
 from platt import *
-import time
 from hsvm import *
 from collections import Counter
 from sklearn.preprocessing import label_binarize
 from scipy.special import softmax
 
 """
-This file includes all functions you need for hyperbolic perceptrons and SVM.
-We also include data generator (Poincare_Uniform_Data()) for synthetic experiment.
+This file contains all functions for hyperbolic perceptrons and SVM. A random data generator is included (Poincare_Uniform_Data) for synthetic experiments. Two methods (ConvexHull and QuickHull) are included to learn the reference point for tangent space.
+
 For perceptron algorithms, we implement
-1. Our hyperbolic perceptron: HP()
-2. Euclidean perceptron: EP()
-3. Hyperbolic perceptron from Weber et al. 2020: WeberHP()
+1. Our hyperbolic perceptron: HP
+2. Euclidean perceptron: EP
+3. Hyperbolic perceptron from Weber et al. 2020: WeberHP
+
+For SVM algorithms, we implement
+1. Our hyperbolic SVM: tangent_hsvm
+2. SVM from Cho et al. 2019: cho_hsvm
+3. Euclidean SVM: euclidean_svm, based on sklearn.svm.LinearSVC
 """
 
 colors = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown', 'tab:pink', 'tab:gray',

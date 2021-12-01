@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 #
 # Distributed under terms of the MIT license.
+# Copyright 2021 Chao Pan.
 
 import numpy as np
 import matplotlib.pyplot as plt
-from Perceptrons import *
+from algos import *
 import argparse
 import os
 import time

@@ -31,19 +31,21 @@ Our results about accuracy, time complexity and number of updates w.r.t perceptr
 **Figure 3.** Averaged number of updates for the Poincaré second-order perceptron (S-perceptron) and Poincaré perceptron for a varying margin ε and fixed (N, d) = (10<sup>4</sup>, 10). Bold numbers indicate the best results, with the maximum number of updates over 20 runs shown in parenthesis.
 
 ### SVM
-Our results about accuracy and time complexity w.r.t svm are shown in the following table.
+Our results about accuracy and time complexity w.r.t SVM are shown in the following table.
 
 ![Image info](./figs/svm_table.png)
 
-**Figure 4.** Performance of the convex Poincaré SVM algorithm.
+**Figure 4.** Performance of the convex Poincaré SVM algorithm. Bold numbers indicate the best results.
 
-# How to use our codes
+# Usage
+
+### Perceptron
 
 The Jupyter notebook `HP_single_exp.ipynb` contains a demo to run our hyperbolic perceptron algorithms, hyperbolic perceptron from [7] and Euclidean perceptron on synthetic data with visualization.
 
-To reproduce our experiments 
+To reproduce our experiments on synthetic data
 ```
-python Synthetic_exp.py --savepath [your saving path] 
+python synthetic_exp.py --savepath=[your saving path] 
 ```
 The experimental setting that can be changed are listed as follows: \
 --N: Number of points (default: 100000) \
@@ -55,21 +57,27 @@ The experimental setting that can be changed are listed as follows: \
 --chucksize: Chucksize for parallelization (default: 1) \
 --Repeat: Number of repeat of experiments (default: 20) 
 
-Note that you can comment out some methods that you don't want to test in the file `Synthetic_exp.py`. We have a more detail instruction in it. 
-
 The output will be saved as a (3,5,Repeat) numpy arrany. \
 First axis: acc, mistakes (for perceptron only), running time. \
 Second axis: methods. They are our hyperbolic perceptron, our second order hyperbolic perceptron, our hyperbolic SVM, SVM from Cho et al., Euclidean SVM.
 
-# More details about the usage TBA
+### SVM
 
-# How to choose the reference point p
-TBA
+To run experiments on real-world data
+```
+python svm_real_data.py --dataset_name=[working dataset from 'cifar', 'fashion-mnist', 'olsson' or 'mini'] --trails=[number of repeat] --save_path=[your saving path]
+```
+Note that SVM is sensitive to the choice of coefficient `C`, which is used in soft-margin classifications.
 
-## Contact
+### Learning reference point p
+We implement two specialized methods `ConvexHull` and `QuickHull` for Poincaré ball model in `algos` to compute the reference point in each class. General method of "Graham Scan" is also included in `Graham Scan`. However, in practice one can also find the closest pair of points between two classes and use their midpoint as the reference point instead of computing the convex hull, since the latter approach is time consuming especially when dimension is large.
+
+Note that when the classes are highly overlapped, we may want to adjust some of the reference points manually based on training data to achieve better performance. Our pre-computed reference points are included in `embedding`.
+
+# Contact
 Please contact Chao Pan (chaopan2@illinois.edu), Eli Chien (ichien3@illinois.edu) if you have any question.
 
-## References
+# References
 [1] A. Olsson, M. Venkatasubramanian, V. K. Chaudhri, B. J. Aronow, N. Salomonis, H. Singh, and H. L. Grimes, “Single-cell analysis of mixed-lineage states leading to a binary cell fate choice,” Nature, vol. 537, no. 7622, pp. 698–702, 2016. \
 [2] A. Krizhevsky, G. Hinton et al., “Learning multiple layers of features from tiny images,” 2009. \
 [3] H. Xiao, K. Rasul, and R. Vollgraf, “Fashion-mnist: a novel image dataset for benchmarking machine learning algorithms,” arXiv preprint arXiv:1708.07747, 2017. \
@@ -77,5 +85,6 @@ Please contact Chao Pan (chaopan2@illinois.edu), Eli Chien (ichien3@illinois.edu
 [5] A. Klimovskaia, D. Lopez-Paz, L. Bottou, and M. Nickel, “Poincaré maps for analyzing complex hierarchies in single-cell data,” Nature communications, vol. 11, no. 1, pp. 1–9, 2020. \
 [6] V. Khrulkov, L. Mirvakhabova, E. Ustinova, I. Oseledets, and V. Lempitsky, “Hyperbolic image embeddings,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2020, pp. 6418–6428. \
 [7] Weber, Melanie, et al. "Robust large-margin learning in hyperbolic space." arXiv preprint arXiv:2004.05465 (2020).
+
 
 

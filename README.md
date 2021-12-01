@@ -66,14 +66,12 @@ Second axis: methods. They are our hyperbolic perceptron, our second order hyper
 
 To run experiments on real-world data
 ```
-python svm_real_data.py --dataset_name=[working dataset from 'cifar', 'fashion-mnist', 'olsson' or 'mini'] --trails=[number of repeat] --save_path=[your saving path]
+python svm_real_data.py --dataset_name=[working dataset from 'cifar', 'fashion-mnist', 'olsson' or 'mini'] --trails=[number of repeat] --save_path=[your saving path] --refpt=['raw' for computing p from scratch, 'precompute for loading p directly']
 ```
 Note that SVM is sensitive to the choice of coefficient `C`, which is used in soft-margin classifications.
 
 ### Learning reference point p
-We implement two specialized methods `ConvexHull` and `QuickHull` for Poincaré ball model in `algos` to compute the reference point in each class. General method of "Graham Scan" is also included in `Graham Scan`. However, in practice one can also find the closest pair of points between two classes and use their midpoint as the reference point instead of computing the convex hull, since the latter approach is time consuming especially when dimension is large.
-
-Note that when the classes are highly overlapped, we may want to adjust some of the reference points manually based on training data to achieve better performance. Our pre-computed reference points are included in `embedding`.
+We implement two specialized methods `ConvexHull` and `QuickHull` for Poincaré ball model in `algos` to compute the reference point in each class. General method of "Graham Scan" is also included in `Graham Scan`. However, in practice one can also find the closest pair of points between two classes and use their midpoint as the reference point albeit this is suboptimal. Note that currently our convex hull algorithm only support the 2 dimensional case. Our pre-computed reference points are included in `embedding`.
 
 # Contact
 Please contact Chao Pan (chaopan2@illinois.edu), Eli Chien (ichien3@illinois.edu) if you have any question.

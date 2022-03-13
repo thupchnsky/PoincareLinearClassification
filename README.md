@@ -76,6 +76,19 @@ We implement two specialized methods `ConvexHull` and `QuickHull` for Poincaré 
 # Contact
 Please contact Chao Pan (chaopan2@illinois.edu), Eli Chien (ichien3@illinois.edu) if you have any question.
 
+# Citation
+If you find our code or work useful, please cite our paper:
+```
+@inproceedings{chien2021highly,
+  title={Highly Scalable and Provably Accurate Classification in Poincar{\'e} Balls},
+  author={Chien, Eli and Pan, Chao and Tabaghi, Puoya and Milenkovic, Olgica},
+  booktitle={2021 IEEE International Conference on Data Mining (ICDM)},
+  pages={61--70},
+  year={2021},
+  organization={IEEE}
+}
+```
+
 # References
 [1] A. Olsson, M. Venkatasubramanian, V. K. Chaudhri, B. J. Aronow, N. Salomonis, H. Singh, and H. L. Grimes, “Single-cell analysis of mixed-lineage states leading to a binary cell fate choice,” Nature, vol. 537, no. 7622, pp. 698–702, 2016. \
 [2] A. Krizhevsky, G. Hinton et al., “Learning multiple layers of features from tiny images,” 2009. \

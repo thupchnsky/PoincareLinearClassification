@@ -3,6 +3,8 @@
 
 ### [Highly Scalable and Provably Accurate Classification in Poincaré Balls (ICDM regular, 2021)](https://arxiv.org/pdf/2109.03781.pdf)
 
+### [Provably Accurate and Scalable Linear Classifiers in Hyperbolic Spaces (KAIS, 2023)](https://arxiv.org/pdf/2203.03730.pdf)
+
 Programming language: Python 3.7. Tested on operating systems: Windows 10, CentOS 7.7.1908
 
 # Poincaré Embedding for Real Datasets
@@ -86,6 +88,15 @@ If you find our code or work useful, please cite our paper:
   pages={61--70},
   year={2021},
   organization={IEEE}
+}
+
+@article{pan2023provably,
+  title={Provably accurate and scalable linear classifiers in hyperbolic spaces},
+  author={Pan, Chao and Chien, Eli and Tabaghi, Puoya and Peng, Jianhao and Milenkovic, Olgica},
+  journal={Knowledge and Information Systems},
+  pages={1--34},
+  year={2023},
+  publisher={Springer}
 }
 ```
 

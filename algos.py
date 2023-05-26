@@ -270,36 +270,48 @@ def ConvexHull(X):
     """
 #     input: X is a d*n matrix
 #     Assume d = 2 so far
-
-#     Step1: Find the point with lowest y-cord
-    Y_ax = X[1,:]
-#     Check if multiple minimum
-    idx = np.argwhere(Y_ax==np.amin(Y_ax))
+    
+    # Ensure no duplicate
+    X = (np.vstack(list({tuple(row) for row in X.T}))).T
+    
+#     Step1: Find the point furthest from origin
+    R_list = np.linalg.norm(X,axis=0)
+#     Check if multiple maximum, pick arbitrary.
+    idx = np.argwhere(R_list==np.amax(R_list))
     if len(idx)>1:
-        X_ax = X[0,idx]
-        idx_2 = np.argmin(X_ax)
-        idx = idx[idx_2]
+        idx=idx[0]
     idx = np.squeeze(idx)
-    p0 = X[:,idx]
+    pstart = X[:,idx]
+    p0 = pstart
+    origin = np.zeros((2,))
 #     Sort points by inner angle with p0
     logX = np.zeros(np.shape(X))
     Iplist = np.zeros(np.shape(X)[1])
+    logX[:,idx] = np.zeros((2,))
+    logX_norm = np.zeros(np.shape(X)[1])
+    normal_vec = -Log_map(origin,p0)/np.linalg.norm(Log_map(origin,p0))
+    tangent_vec = np.array([-normal_vec[1],normal_vec[0]])
     for n in range(np.shape(X)[1]):
+        if n == idx:
+            continue
         logX[:,n] = Log_map(X[:,n],p0)
-        Iplist[n] = np.dot(logX[:,n]/np.linalg.norm(logX[:,n]),[1,0])
+        logX_norm[n] = np.linalg.norm(logX[:,n])
+        Iplist[n] = np.dot(logX[:,n]/np.linalg.norm(logX[:,n]),tangent_vec)
+          
 #     Make sure p0 is sorted as the last point
     Iplist[idx] = -np.inf
+    logX_norm[idx] = 0
 #     Sort Iplist
     Ipidx = np.flip(np.argsort(Iplist))
     
+    first_ptidx = 0
     Points = X[:,Ipidx]
     
     d = np.shape(X)[0]
     N = np.shape(X)[1]
     Stack = np.zeros((d,N+1))
+    Stack[:,0] = pstart
     end_idx = 0
-    Stack[:,0] = p0
-
     for point in Points.T:
         while (end_idx>0) and (ccw(Stack[:,end_idx-1],Stack[:,end_idx],point)<0):
             end_idx -= 1
@@ -314,8 +326,8 @@ def ccw(p0,p1,p2):
     """
     Outer product in hyperbolic Graham scan.
     """
-    v01 = Log_map(p1,p0)
-    v12 = Log_map(p2,p0)
+    v01 = Log_map(p1,p0)/np.linalg.norm(Log_map(p1,p0))
+    v12 = Log_map(p2,p0)/np.linalg.norm(Log_map(p2,p0))
     return v01[0]*v12[1]-v01[1]*v12[0]
 
 

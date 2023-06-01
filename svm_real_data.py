@@ -185,7 +185,7 @@ def tangent_hsvm(X_train, train_labels, X_test, test_labels, C, p=None, p_arr=No
             for i in range(n_train_samples):
                 X_train_log_map[i] = Log_map(X_train[i], p, curvature_const)
             # print('log transformation done!')
-            linear_svm = LinearSVC(penalty='l2', loss='squared_hinge', C=C, fit_intercept=True)
+            linear_svm = LinearSVC(penalty='l2', loss='squared_hinge', C=C, fit_intercept=False)
             linear_svm.fit(X_train_log_map, binarized_labels)
             # print('binary SVM done!')
             w = linear_svm.coef_[0]
@@ -263,21 +263,22 @@ def euclidean_svm(X_train, train_labels, X_test, test_labels, C, multiclass=Fals
                 else:
                     binarized_labels.append(-1)
             binarized_labels = np.array(binarized_labels)
-            linear_svm = LinearSVC(penalty='l2', loss='squared_hinge', C=C, fit_intercept=False)
+            linear_svm = LinearSVC(penalty='l2', loss='squared_hinge', C=C, fit_intercept=True)
             linear_svm.fit(X_train, binarized_labels)
             # print('binary SVM done!')
             w = linear_svm.coef_[0]
-            decision_vals = np.array([np.dot(w, x) for x in X_train])
+            b = linear_svm.intercept_[0]
+            decision_vals = np.array([np.dot(w, x) + b for x in X_train])
             ab = SigmoidTrain(deci=decision_vals, label=binarized_labels, prior1=None, prior0=None)
             # print('Platt probability computed!')
             # map testing data using log map
             for i in range(n_test_samples):
-                test_decision_val = np.dot(w, X_test[i])
+                test_decision_val = np.dot(w, X_test[i]) + b
                 test_probability[i, class_label] = SigmoidPredict(deci=test_decision_val, AB=ab)
             # print('Probability for each test samples computed!')
         y_pred = np.argmax(test_probability, axis=1)
     else:
-        linear_svm = LinearSVC(penalty='l2', loss='squared_hinge', C=C, fit_intercept=False)
+        linear_svm = LinearSVC(penalty='l2', loss='squared_hinge', C=C, fit_intercept=True)
         linear_svm.fit(X_train, train_labels)
         y_pred = linear_svm.predict(X_test)
     return accuracy_score(test_labels, y_pred)*100, time.time() - start

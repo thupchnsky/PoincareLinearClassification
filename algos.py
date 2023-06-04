@@ -264,11 +264,11 @@ def L2P(Z):
     return X
 
 
-def ConvexHull(X):
+def ConvexHull(X, c=1.0):
     """
     Finding convexhull in Poincare disk using hyperbolic version of Graham scan.
     """
-#     input: X is a d*n matrix
+#     input: X is a d*n matrix. c is the (negative) curvature, default to be 1.0.
 #     Assume d = 2 so far
     
     # Ensure no duplicate
@@ -289,12 +289,12 @@ def ConvexHull(X):
     Iplist = np.zeros(np.shape(X)[1])
     logX[:,idx] = np.zeros((2,))
     logX_norm = np.zeros(np.shape(X)[1])
-    normal_vec = -Log_map(origin,p0)/np.linalg.norm(Log_map(origin,p0))
+    normal_vec = -Log_map(origin,p0,c=c)/np.linalg.norm(Log_map(origin,p0,c=c))
     tangent_vec = np.array([-normal_vec[1],normal_vec[0]])
     for n in range(np.shape(X)[1]):
         if n == idx:
             continue
-        logX[:,n] = Log_map(X[:,n],p0)
+        logX[:,n] = Log_map(X[:,n],p0,c=c)
         logX_norm[n] = np.linalg.norm(logX[:,n])
         Iplist[n] = np.dot(logX[:,n]/np.linalg.norm(logX[:,n]),tangent_vec)
           
@@ -313,7 +313,7 @@ def ConvexHull(X):
     Stack[:,0] = pstart
     end_idx = 0
     for point in Points.T:
-        while (end_idx>0) and (ccw(Stack[:,end_idx-1],Stack[:,end_idx],point)<0):
+        while (end_idx>0) and (ccw(Stack[:,end_idx-1],Stack[:,end_idx],point,c=c)<0):
             end_idx -= 1
             
         end_idx += 1
@@ -322,12 +322,12 @@ def ConvexHull(X):
     return Stack[:,:(end_idx+1)]
 
 
-def ccw(p0,p1,p2):
+def ccw(p0,p1,p2,c=c):
     """
     Outer product in hyperbolic Graham scan.
     """
-    v01 = Log_map(p1,p0)/np.linalg.norm(Log_map(p1,p0))
-    v12 = Log_map(p2,p0)/np.linalg.norm(Log_map(p2,p0))
+    v01 = Log_map(p1,p0,c=c)/np.linalg.norm(Log_map(p1,p0,c=c))
+    v12 = Log_map(p2,p0,c=c)/np.linalg.norm(Log_map(p2,p0,c=c))
     return v01[0]*v12[1]-v01[1]*v12[0]
 
 
